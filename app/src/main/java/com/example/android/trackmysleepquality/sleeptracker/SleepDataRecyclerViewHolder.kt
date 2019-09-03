@@ -1,4 +1,4 @@
-package com.example.android.trackmysleepquality.sleepdatarecyclerclasses
+package com.example.android.trackmysleepquality.sleeptracker
 
 import android.graphics.Color
 import android.view.LayoutInflater
