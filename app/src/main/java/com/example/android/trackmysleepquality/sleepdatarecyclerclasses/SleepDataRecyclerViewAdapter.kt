@@ -1,10 +1,9 @@
 package com.example.android.trackmysleepquality.sleepdatarecyclerclasses
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepNight
+import com.example.android.trackmysleepquality.sleepdatarecyclerclasses.SleepDataRecyclerViewHolder.Companion
 
 class SleepDataRecyclerViewAdapter : RecyclerView.Adapter<SleepDataRecyclerViewHolder>() {
 
@@ -23,8 +22,6 @@ class SleepDataRecyclerViewAdapter : RecyclerView.Adapter<SleepDataRecyclerViewH
     }
 
    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SleepDataRecyclerViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.recycler_view_cell, parent, false)
-        return SleepDataRecyclerViewHolder(view)
-    }
+       return Companion.sleepDataRecyclerViewHolderInflating(parent)
+   }
 }
