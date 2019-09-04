@@ -20,7 +20,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -63,8 +62,9 @@ class SleepTrackerFragment : Fragment() {
         binding.sleepRv.layoutManager = manager
 
         val adapter = SleepDataRecyclerViewAdapter(SleepNightListener {
-            nightId -> Toast.makeText(context, "$nightId", Toast.LENGTH_SHORT).show()
+            nightId -> viewModel.onSleepNightClicked(nightId)
         })
+
         binding.sleepRv.adapter = adapter
 
         viewModel.nights.observe(viewLifecycleOwner, Observer {
@@ -81,6 +81,13 @@ class SleepTrackerFragment : Fragment() {
                                 .actionSleepTrackerFragmentToSleepQualityFragment(night.nightId))
                 viewModel.doneNavigating()
             }
+        })
+
+        viewModel.navigateToNightDetail.observe(this, Observer {
+            night -> night?.let {
+            this.findNavController().navigate(SleepTrackerFragmentDirections.actionSleepTrackerFragmentToSleepDetailFragment(night))
+            viewModel.onSleepNightNavigated()
+        }
         })
 
         viewModel.showSnackbarEvent.observe(this, Observer {
