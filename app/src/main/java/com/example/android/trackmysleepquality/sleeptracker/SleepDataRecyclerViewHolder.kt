@@ -8,8 +8,9 @@ import com.example.android.trackmysleepquality.databinding.RecyclerViewCellBindi
 
 class SleepDataRecyclerViewHolder private constructor(val binding: RecyclerViewCellBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bindSleepViewHolderData(item: SleepNight) {
+    fun bindSleepViewHolderData(item: SleepNight, clickListener: SleepNightListener) {
         binding.sleep = item
+        binding.clickListener = clickListener
         binding.executePendingBindings()
     }
 
